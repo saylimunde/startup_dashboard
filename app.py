@@ -46,7 +46,7 @@ def load_overall_analysis():
     temp_df['x_axis'] = temp_df['month'].astype('str') + '-' + temp_df['year'].astype('str')
     # fig5, ax5 = plt.subplots()
     # temp_df[['amount', 'x_axis']]
-    st.line_chart(data=temp_df,x='x_axis',y='amount')
+    st.line_chart(temp_df.set_index('x_axis')['amount'])
 
     # st.pyplot(fig5)
 
@@ -106,8 +106,7 @@ def load_investor_details(investor):
 
     st.subheader('YoY Investment')
 
-
-    st.line_chart(data=year_series,x_label='year',y_label='amount')
+    st.line_chart(year_series.sort_index())
 
 
 # df['Investors Name'] = df['Investors Name'].fillna('Undisclosed')
